@@ -15,8 +15,10 @@
     </div>
 
     <script>
+
+        //第一种 递归 方法
         function myFibonacci(n) {
-            if (n < 0) { return; }
+            if (n < 0) { return false; }
             if (n === 0) { return 0; }
             if (n === 1) { return 1; }
             if (n > 1) {
@@ -24,6 +26,44 @@
             }
         }
         var a = document.getElementById("num").innerHTML = `${myFibonacci(10)}`
+
+
+        //第二种  迭代 方法
+        function fib(n) {
+            if (n < 0) { return false; }
+            if (n === 0) { return 0; }
+            if (n === 1) { return 1; }
+            let a = 0
+            let b = 1
+            let result = 0
+            for (i = 2; i <= n; i++) {
+                result = a + b;
+                a=b;
+                b=result
+            }
+            return result
+        }
+        console.log(fib(4))
+
+
+        //第三种 动态规划 方法  
+        //动态规划-->寻找最优步骤-->从而得出最终的最优方法
+
+        //此方法将内存分为两块  可以理解为->分别是arr[0]和arr[1],每次循环
+        //只替换内存的位置，与迭代方法类似，但是内存空间只用了两块，所以在空间复杂度此方法为最优解！！！
+        function fiblist(n) {
+            if (n < 0) { return false; }
+            if (n === 0) { return 0; }
+            if (n === 1) { return 1; }
+           let arr = [0,1]
+           let i =2
+           while(n>=i){
+            arr[i%2]=arr[(i-1)%2]+arr[(i-2)%2]
+            i++;
+           }
+           return arr[n%2]
+        }
+        console.log(fiblist(10))
     </script>
 </body>
 

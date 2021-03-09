@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container {
+        width: 100%;
+        height: 300px;
+        background-color: darkcyan;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div id="container">
+    </div>
+    <script>
+
+        //防抖函数
+        const debounce = (func, waitTime) => {
+            let timer;
+            return function () {
+                let args = arguments
+                let ctx = this; //改变执行函数内部this指向
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    func.apply(ctx, args);
+                }, waitTime)
+            }
+        };
+
+        
+        let count = 0;
+        let container = document.querySelector('#container');
+        function doSomeThing(e) {
+            console.log(e)
+            container.innerHTML = count++
+        };
+        container.onmousemove = debounce(doSomeThing, 300)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维数组查询</title>
+</head>
+<body>
+    <h1>2021年03月08日打卡</h1>
+    <button onclick="search([[1, 2, 3], [4, 5, 6], [7, 8, 9]],10)">show me</button>
+    <script>
+        //x  123
+        //   456
+        //   789
+        //   y
+        var arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        var search = function (arr, target) {
+            var x = 0;
+            var y = arr[0].length - 1;
+            while (x >= 0 && y < arr[0].length) {
+                if (arr[y][x] == target) {
+                    console.log(true);
+                    return true;
+                } else if (arr[y][x] > target) {
+                    y = y - 1;
+                } else if (arr[y][x] < target) {
+                    x = x + 1;
+                } else {
+                    console.log(false);
+                    return false;
+                }
+            }
+        };
+        search(arr, 8)
+    </script>
+</body>
+
+</html>

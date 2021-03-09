@@ -9,7 +9,11 @@
 </head>
 
 <body>
-    <h1>2021年03月09日打卡</h1>
+    <div style="width:500px;margin: 15% auto;">
+        <h1>2021年03月09日打卡</h1>
+        <h1 id="num"></h1>
+    </div>
+
     <script>
         function myFibonacci(n) {
             if (n < 0) { return; }
@@ -19,7 +23,7 @@
                 return myFibonacci(n - 1) + myFibonacci(n - 2);
             }
         }
-        myFibonacci(9)
+        var a = document.getElementById("num").innerHTML = `${myFibonacci(0)}`
     </script>
 </body>
 

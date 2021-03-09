@@ -25,29 +25,57 @@
 <body>
     <div id="container">
     </div>
+    <button id="btn">取消防抖</button>
     <script>
+        // 防抖：事件响应函数在一段时间后才执行一次，如果时间内在此调用则重新计算执行时间
+        //使用场景：1.scroll滚动事件  2.搜索框  3.表单验证  4.按钮提交  5.浏览器的窗口缩放，resize事件
+
 
         //防抖函数
-        const debounce = (func, waitTime) => {
-            let timer;
-            return function () {
+        const debounce = (func, waitTime, immedidate) => {
+            let timer, result;
+            let decounced = function () {
                 let args = arguments
                 let ctx = this; //改变执行函数内部this指向
                 clearTimeout(timer);
-                timer = setTimeout(function () {
-                    func.apply(ctx, args);
-                }, waitTime)
+                if (immedidate) {
+                    //立即执行
+                    let now = !timer
+                    timer = setTimeout(() => {
+                        timer = null
+                    }, waitTime);
+                    if (now) {
+                        result = func.apply(ctx, args);
+                    }
+                } else {
+                    timer = setTimeout(function () {
+                        func.apply(ctx, args);
+                    }, waitTime)
+                }
+                return result
             }
+            decounced.cancel = function () {
+                clearTimeout(timer);
+                timer = null;
+            }
+            return decounced;
         };
 
-        
         let count = 0;
+        let btn = document.querySelector('#btn');
         let container = document.querySelector('#container');
-        function doSomeThing(e) {
-            console.log(e)
+        function doSomeThing() {
             container.innerHTML = count++
         };
-        container.onmousemove = debounce(doSomeThing, 300)
+        let doSome = debounce(doSomeThing, 3000, false);
+        btn.onclick = function () {
+            console.log('====================================');
+            console.log('阻止');
+            console.log('====================================');
+            doSome.cancel()
+        };
+        container.onmousemove = doSome;
+
     </script>
 </body>
 

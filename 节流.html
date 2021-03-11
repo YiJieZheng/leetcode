@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container {
+        width: 100%;
+        height: 300px;
+        background-color: darkcyan;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div id="container">
+    </div>
+    <button id="btn">取消防抖</button>
+    <script>
+        // 节流
+        //如果持续触发，每隔一段时间只执行一次事件
+        //应用场景
+        //1.dom元素拖拽
+        //2.雷霆战机类的游戏
+        //3.计算鼠标移动距离
+        //4.监听scroll滚动事件
+           //防抖是用户滑动到底部才加载
+           //节流是滚动一段时间就加载一次
+        const throttle = (func, wait, options) => {
+            let ctx, args, timer;
+            let old = 0;
+            return function () {
+                ctx = this;
+                args = arguments;
+                let now = new Date().valueOf();
+                if (!options) { options = {} }
+                if (options.leading === false && !old) { old = now }
+                if (now - old > wait) {
+                    //第一次会直接执行
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    //立即执行
+                    func.apply(ctx, args);
+                    old = now;
+                } else if (!timer && options.trailing !== false) {
+                    //最后一次执行
+                    timer = setTimeout(() => {
+                        timer = null;
+                        old = new Date().valueOf()
+                        func.apply(ctx, args)
+                    }, wait);
+                }
+            }
+        }
+
+
+        let count = 0;
+        let btn = document.querySelector('#btn');
+        let container = document.querySelector('#container');
+        function doSomeThing() {
+            container.innerHTML = count++
+        };
+
+        container.onmousemove = throttle(doSomeThing, 3000, { leading: false, trailing: true });
+
+    </script>
+</body>
+
+</html>

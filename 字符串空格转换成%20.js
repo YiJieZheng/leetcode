@@ -1,7 +1,7 @@
 const replaceSpace = function (str) {
     const newStr = []
-    // i 是新字符串的下标
-    // j 是原字符串的下标
+    // i 是新字符串的index
+    // j 是原字符串的index
     for (let i = 0, j = 0, k = 0; j < str.length; j++) {
         if (str[j] === " ") {
             newStr[i++] = "%";

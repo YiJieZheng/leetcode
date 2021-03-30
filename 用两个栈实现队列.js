@@ -1,18 +1,18 @@
 const zQueue = function () {
-    this.stackA = []
-    this.stackB = []
+    let stackA = []    //不用this.stackA = [],是为了不暴露到外部遭到修改
+    let stackB = []
 }
 zQueue.prototype.Qpush = function (val) {
-    this.stackA.push(val)
-    console.log('stackA', this.stackA);
+    stackA.push(val)
+    console.log('stackA', stackA);
 }
 zQueue.prototype.Qdelete = function () {
-    if (this.stackB.length) {
+    if (stackB.length) {
         console.log('进来了');
-        this.stackB.pop()
+        stackB.pop()
     } else {
-        while (this.stackA.length) {
-            this.stackB.push(this.stackA.pop());
+        while (stackA.length) {
+            stackB.push(stackA.pop());
         }
         return this.stackB.pop() || -1
     }

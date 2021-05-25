@@ -21,6 +21,8 @@ console.log(typeof bool) //boolean
 
 let num = 1;
 console.log(typeof num) //number
+let Na = NaN
+console.log(typeof Na) //number
 let count = new Number(2)
 console.log(typeof count) //object
 
@@ -53,3 +55,5 @@ function instance_of(left, right) {
 }
 let a = 'asd'
 console.log(instance_of(a, String))
+
+console.log(Object.prototype.toString.call(a)) //比较精确的类型判断

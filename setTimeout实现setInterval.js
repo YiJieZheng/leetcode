@@ -5,8 +5,8 @@ function interval(func, time, params) {
     args = params
     func.call(ctx, args)
     timer = setTimeout(function () {
-        interval(func, time, params)
-        clearTimeout(timer)
+      
+        
     }, time);
 }
 let func = function (num) {

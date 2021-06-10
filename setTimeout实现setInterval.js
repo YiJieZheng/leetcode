@@ -1,15 +1,29 @@
-//setInterval ( code, milliseconds[, args...] )
-function interval(func, time, params) {
-    let ctx, args, timer;
-    ctx = this;
-    args = params
-    func.call(ctx, args)
-    timer = setTimeout(function () {
-      
-        
-    }, time);
+//利用setTimeout实现setInterval，反过来能实现吗？为什么要这样做有什么优缺点吗？
+function mySetInterval(fn, t) {
+    let timer = null;
+    function interval() {
+        fn();
+        timer = setTimeout(interval, t)
+    }
+    interval()
+    return {
+        cancel: () => {
+            clearTimeout(timer)
+        }
+    }
 }
-let func = function (num) {
-    console.log(num)
+let a = mySetInterval(() => {
+    console.log('xxxx')
+}, 1000)
+
+
+//反向实现
+function mySetTimeout(fn, t) {
+    let timer = setInterval(() => {
+        fn()
+        clearInterval(timer)
+    }, t)
 }
-interval(func, 1000, 5)
+let a = mySetTimeout(() => {
+    console.log('xxxx')
+}, 1000)

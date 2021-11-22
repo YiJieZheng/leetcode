@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .view {
+        width: 800px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .box {
+        width: 200px;
+        height: 50px;
+        background-color: #ccc;
+        border-radius: 15px;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .boss {
+        margin: 0 auto;
+        position: relative;
+        z-index: 100;
+    }
+
+    .line {
+        width: 450px;
+        height: 60px;
+        border: 2px solid #ccc;
+        border-bottom: none;
+        position: relative;
+        top: -10px;
+    }
+
+    .second {
+        position: relative;
+        left: 100px;
+        top: 10px;
+        z-index: 100;
+    }
+
+    .third {
+        position: relative;
+        right: 100px;
+        top: 10px;
+        z-index: 100;
+    }
+
+    .bottomBox {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <div class="view">
+        <div class="boss box">老大</div>
+        <div class="bottomBox">
+            <div class="second box">老二</div>
+            <div class="line"></div>
+            <div class="third box">老三</div>
+        </div>
+
+    </div>
+    <script>
+        // let second = document.querySelector('.second')
+        // let boss = document.querySelector('.boss')
+        // let third = document.querySelector('.third')
+        // let line = document.querySelector('.line')
+        // second.addEventListener('mouseenter', function (e) {
+        //     e.target.style.background = 'blue'
+        //     e.target.style.color = '#fff'
+        //     boss.style.background = 'blue'
+        //     boss.style.color = '#fff'
+        //     third.style.background = 'blue'
+        //     third.style.color = '#fff'
+        //     line.style.border = '2px solid blue'
+        //     line.style.borderBottom = 'none'
+        // })
+        // second.addEventListener('mouseleave', function (e) {
+        //     e.target.style.background = '#ccc'
+        //     e.target.style.color = '#000'
+        //     boss.style.background = '#ccc'
+        //     boss.style.color = '#000'
+        //     third.style.background = '#ccc'
+        //     third.style.color = '#000'
+        //     line.style.border = '2px solid #ccc'
+        //     line.style.borderBottom = 'none'
+        // })
+
+        let area = document.querySelectorAll('.box')
+        let second = document.querySelector('.second')
+        let boss = document.querySelector('.boss')
+        let third = document.querySelector('.third')
+        let line = document.querySelector('.line')
+        for (let i = 0; i < area.length; i++) {
+            area[i].addEventListener('mouseenter', function (e) {
+                second.style.background = 'blue'
+                second.style.color = '#fff'
+                boss.style.background = 'blue'
+                boss.style.color = '#fff'
+                third.style.background = 'blue'
+                third.style.color = '#fff'
+                line.style.border = '2px solid blue'
+                line.style.borderBottom = 'none'
+            })
+            area[i].addEventListener('mouseleave', function (e) {
+                second.style.background = '#ccc'
+                second.style.color = '#000'
+                boss.style.background = '#ccc'
+                boss.style.color = '#000'
+                third.style.background = '#ccc'
+                third.style.color = '#000'
+                line.style.border = '2px solid #ccc'
+                line.style.borderBottom = 'none'
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -34,7 +34,7 @@ function myInstanceOf(L, R) {
         return true
     }
 };
-console.log(myInstanceOf(new String(''), String));
+// console.log(myInstanceOf(new String(''), String));
 
 //～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
 //深拷贝和浅拷贝？赋值是浅拷贝吗？
@@ -47,12 +47,17 @@ console.log(myInstanceOf(new String(''), String));
 //     ｜   栈   ｜       堆         ｜
 //     ｜       ｜                  ｜
 //     ｜       ｜                  ｜
-//     ｜       ｜                  ｜
-//     ｜       ｜                  ｜
+//     ｜  obj  ｜  name:'Jackson'  ｜
+//     ｜       ｜ arr: [1, 2, 3, 4]｜
+//      -----------------------------
 let obj = {
     name: 'Jackson',
     arr: [1, 2, 3, 4]
 }
+let a = '1'
+let b = a;
+b = '2'
+// console.log(a, b);
 //===================赋值======================
 // let obj1 = obj
 // obj1.name = '这是赋值'

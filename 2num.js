@@ -9,4 +9,17 @@ function twoNum(arr, target) {
         map.set(arr[i], i)
     }
 }
-console.log(twoNum(arr, 6))
+//速度更快
+var twoSum = function (nums, target){
+    let map = {}
+    for(let i = 0;i<nums.length;i++){
+        let num = nums[i]
+        let key = target - num
+        if(map[key] !== undefined){
+            return [map[key],i]
+        }else{
+            map[num] = i
+        }
+    }
+}
+console.log(twoNum(arr, 9))
